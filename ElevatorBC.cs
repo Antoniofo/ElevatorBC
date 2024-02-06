@@ -7,6 +7,7 @@ using Exiled.API.Features;
 using Exiled.API.Interfaces;
 using Exiled.Events;
 using Exiled.Events.EventArgs.Player;
+using Exiled.Events.EventArgs.Scp914;
 using UnityEngine;
 
 namespace ElevatorBC
@@ -17,6 +18,7 @@ namespace ElevatorBC
         {
             base.OnEnabled();
             Exiled.Events.Handlers.Player.InteractingElevator += OnPlayerInteractElevator;
+            Exiled.Events.Handlers.Scp914.Activating += On914Activating;
         }
 
         public override void OnDisabled()
@@ -25,6 +27,16 @@ namespace ElevatorBC
             Exiled.Events.Handlers.Player.InteractingElevator -= OnPlayerInteractElevator;
         }
 
+        public void On914Activating(ActivatingEventArgs ev)
+        {
+            foreach (Player ply in Player.List)
+            {
+                if (Vector3.Distance(ply.Position, Exiled.API.Features.Scp914.Transform.position) < 10.0f)
+                {
+                    ply.ShowHint(Config.Scp914Message.Replace("%NAME%", ev.Player.DisplayNickname).Replace("%MODE%",Exiled.API.Features.Scp914.KnobStatus.ToString()));
+                }
+            }
+        }
         public void OnPlayerInteractElevator(InteractingElevatorEventArgs ev)
         {
 
@@ -32,7 +44,7 @@ namespace ElevatorBC
             {
                 if (Vector3.Distance(ply.Position, ev.Elevator.gameObject.transform.position) < 10.0f)
                 {
-                    ply.ShowHint(Config.Message.Replace("%NAME%", ev.Player.DisplayNickname));
+                    ply.ShowHint(Config.ElevatorMessage.Replace("%NAME%", ev.Player.DisplayNickname));
                 }
             }
 
