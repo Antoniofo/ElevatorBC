@@ -10,7 +10,7 @@ namespace ElevatorBC
     public class Config : IConfig
     {
         public bool IsEnabled { get; set; } = true;
-        public bool Debug { get; set; } = true;
+        public bool Debug { get; set; } = false;
 
         public string ElevatorMessage { get; set; } = "<br><br><br><br><br><br><br><br><br><br><br><br><size=18>Le joureur <color=red>%NAME%</color> a appuyé sur le bouton</size>";
 

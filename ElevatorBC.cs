@@ -14,6 +14,13 @@ namespace ElevatorBC
 {
     public class ElevatorBC : Plugin<Config>
     {
+        public override string Author => "Antoniofo";
+
+        public override string Name => "ElevatorBC";
+
+        public override Version Version => new Version(1,0,0);
+
+        public override string Prefix => "elevatorbc";
         public override void OnEnabled()
         {
             base.OnEnabled();
