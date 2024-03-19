@@ -12,6 +12,7 @@ env:
   EXILED_REFERENCES: ${{ github.workspace }}/References
 jobs:
   build:
+    if: github.event_name == 'pull_request' || github.event_name == 'push'
     runs-on: windows-latest
 
     steps:
@@ -43,3 +44,19 @@ jobs:
         with:
           name: ElevatorBC
           path: "bin/Release/ElevatorBC.dll"
+
+  release:
+    if: github.event_name == 'push'
+    needs: build
+    runs-on: windows-latest
+
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: ElevatorBC
+
+      - name: Create Release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: ElevatorBC.dll
