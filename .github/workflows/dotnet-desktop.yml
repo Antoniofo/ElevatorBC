@@ -59,4 +59,5 @@ jobs:
       - name: Create Release
         uses: ncipollo/release-action@v1
         with:
+          tag_name: ${{ github.ref }}
           artifacts: ElevatorBC.dll
