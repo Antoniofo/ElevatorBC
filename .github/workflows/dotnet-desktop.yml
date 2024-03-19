@@ -1,6 +1,8 @@
 name: ElevatorBC Build
 on:
   push:
+     branches:
+      - main
      tags:        
       - '*'
   pull_request:
