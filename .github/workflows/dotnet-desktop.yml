@@ -1,0 +1,45 @@
+name: ElevatorBC Build
+on:
+  push:
+    branches:
+    - main    
+  pull_request:
+    branches:
+    - main    
+  workflow_dispatch:
+env:
+  REFERENCES_URL: https://exiled.host/build_deps/Dev.zip
+  EXILED_REFERENCES: ${{ github.workspace }}/References
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Setup .NET Core SDK
+        uses: actions/setup-dotnet@v3
+
+      - uses: actions/checkout@v3.3.0
+
+      - name: Restore Packages
+        run: nuget restore
+
+      - name: Get Build References
+        shell: pwsh
+        run: |
+          Invoke-WebRequest -Uri ${{ env.REFERENCES_URL }} -OutFile ${{ github.workspace }}/Dev.zip
+          Expand-Archive -Path Dev.zip -DestinationPath ${{ env.EXILED_REFERENCES }}
+
+      - name: Setup MSBuild.exe
+        uses: microsoft/Setup-MSBuild@v1
+        env:
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
+
+      - name: Build
+        run: | 
+          msbuild ElevatorBC.csproj -t:rebuild -property:Configuration=Release -property:EXILED_REFERENCES="${{ env.EXILED_REFERENCES }}"
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: ElevatorBC
+          path: "bin/Release/net48/ElevatorBC.dll"
