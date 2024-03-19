@@ -8,7 +8,7 @@ on:
     - main    
   workflow_dispatch:
 env:
-  REFERENCES_URL: https://exiled.host/build_deps/Dev.zip
+  REFERENCES_URL: https://misaka-zerotwo.github.io/SL-References/Master.zip
   EXILED_REFERENCES: ${{ github.workspace }}/References
 jobs:
   build:
