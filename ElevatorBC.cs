@@ -12,7 +12,7 @@ using UnityEngine;
 
 namespace ElevatorBC
 {
-    public class ElevatorBC : Plugin<Config>
+    public class ElevatorBC : Plugin<Config, Translation>
     {
         public override string Author => "Antoniofo";
 
@@ -40,7 +40,7 @@ namespace ElevatorBC
             {
                 if (Vector3.Distance(ply.Position, Exiled.API.Features.Scp914.Transform.position) < 10.0f)
                 {
-                    ply.ShowHint(Config.Scp914Message.Replace("%NAME%", ev.Player.DisplayNickname).Replace("%MODE%",Exiled.API.Features.Scp914.KnobStatus.ToString()));
+                    ply.ShowHint(Translation.Scp914Message.Replace("%NAME%", ev.Player.DisplayNickname).Replace("%MODE%",Exiled.API.Features.Scp914.KnobStatus.ToString()));
                 }
             }
         }
@@ -51,7 +51,7 @@ namespace ElevatorBC
             {
                 if (Vector3.Distance(ply.Position, ev.Elevator.gameObject.transform.position) < 10.0f)
                 {
-                    ply.ShowHint(Config.ElevatorMessage.Replace("%NAME%", ev.Player.DisplayNickname));
+                    ply.ShowHint(Translation.ElevatorMessage.Replace("%NAME%", ev.Player.DisplayNickname));
                 }
             }
 
