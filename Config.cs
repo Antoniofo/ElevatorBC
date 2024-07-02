@@ -13,5 +13,8 @@ namespace ElevatorBC
 
         public bool Debug { get; set; } = false;
 
+        public float Distance { get; set; } = 10.0f;
+
+        public float HintDuration { get; set; } = 3f;
     }
 }

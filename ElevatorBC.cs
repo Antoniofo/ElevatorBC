@@ -18,7 +18,7 @@ namespace ElevatorBC
 
         public override string Name => "ElevatorBC";
 
-        public override Version Version => new Version(1,0,0);
+        public override Version Version => new Version(1,1,0);
 
         public override string Prefix => "elevatorbc";
         public override void OnEnabled()
@@ -38,9 +38,9 @@ namespace ElevatorBC
         {
             foreach (Player ply in Player.List)
             {
-                if (Vector3.Distance(ply.Position, Exiled.API.Features.Scp914.Transform.position) < 10.0f)
+                if (Vector3.Distance(ply.Position, Exiled.API.Features.Scp914.Transform.position) < Config.Distance)
                 {
-                    ply.ShowHint(Translation.Scp914Message.Replace("%NAME%", ev.Player.DisplayNickname).Replace("%MODE%",Exiled.API.Features.Scp914.KnobStatus.ToString()));
+                    ply.ShowHint(Translation.Scp914Message.Replace("%NAME%", ev.Player.DisplayNickname).Replace("%MODE%",Exiled.API.Features.Scp914.KnobStatus.ToString()), Config.HintDuration);
                 }
             }
         }
@@ -49,9 +49,9 @@ namespace ElevatorBC
 
             foreach (Player ply in Player.List)
             {
-                if (Vector3.Distance(ply.Position, ev.Elevator.gameObject.transform.position) < 10.0f)
+                if (Vector3.Distance(ply.Position, ev.Elevator.gameObject.transform.position) < Config.Distance)
                 {
-                    ply.ShowHint(Translation.ElevatorMessage.Replace("%NAME%", ev.Player.DisplayNickname));
+                    ply.ShowHint(Translation.ElevatorMessage.Replace("%NAME%", ev.Player.DisplayNickname), Config.HintDuration);
                 }
             }
 
