@@ -18,7 +18,7 @@ namespace ElevatorBC
 
         public override string Name => "ElevatorBC";
 
-        public override Version Version => new Version(1,1,0);
+        public override Version Version => new Version(1,1,1);
 
         public override string Prefix => "elevatorbc";
         public override void OnEnabled()
