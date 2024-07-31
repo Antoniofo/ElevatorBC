@@ -7,7 +7,7 @@
 
 # Installation:
 
-You can install this plugin, download the [.dll](https://github.com/Antoniofo/ElevatorBC/releases) file and placing it in ``%AppData%\Roaming\EXILED\Plugins`` (Windows) or ``~/.config/EXILED/Plugins`` (Linux)
+To install this plugin download the [.dll](https://github.com/Antoniofo/ElevatorBC/releases) file and placing it in ``%AppData%\Roaming\EXILED\Plugins`` (Windows) or ``~/.config/EXILED/Plugins`` (Linux)
 
 
 # How to use ?
