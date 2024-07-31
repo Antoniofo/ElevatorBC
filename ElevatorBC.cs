@@ -20,18 +20,21 @@ namespace ElevatorBC
 
         public override Version Version => new Version(1,1,1);
 
+        public override Version RequiredExiledVersion => new Version(8, 11, 0);
+
         public override string Prefix => "elevatorbc";
         public override void OnEnabled()
-        {
-            base.OnEnabled();
+        {            
             Exiled.Events.Handlers.Player.InteractingElevator += OnPlayerInteractElevator;
             Exiled.Events.Handlers.Scp914.Activating += On914Activating;
+            base.OnEnabled();
         }
 
         public override void OnDisabled()
-        {
-            base.OnDisabled();
+        {            
             Exiled.Events.Handlers.Player.InteractingElevator -= OnPlayerInteractElevator;
+            Exiled.Events.Handlers.Scp914.Activating -= On914Activating;
+            base.OnDisabled();
         }
 
         public void On914Activating(ActivatingEventArgs ev)
