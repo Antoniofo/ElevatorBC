@@ -10,7 +10,7 @@ on:
     - main    
   workflow_dispatch:
 env:
-  REFERENCES_URL: https://misaka-zerotwo.github.io/SL-References/Master.zip
+  REFERENCES_URL: https://exslmod-team.github.io/SL-References/LabAPI.zip
   EXILED_REFERENCES: ${{ github.workspace }}/References
 jobs:
   build:
@@ -42,7 +42,7 @@ jobs:
           msbuild ElevatorBC.csproj -t:rebuild -property:Configuration=Release -property:EXILED_REFERENCES="${{ env.EXILED_REFERENCES }}"
 
       - name: Upload artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ElevatorBC
           path: "bin/Release/ElevatorBC.dll"
@@ -54,7 +54,7 @@ jobs:
 
     steps:
       - name: Download artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: ElevatorBC
 
